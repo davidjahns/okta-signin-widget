@@ -144,7 +144,7 @@ const createUISchema = (remediationValue = [], factors = [], authenticators = []
       uiSchema.modelType = ionFormField.type;
       // uiSchema type is the html input type desired.
       uiSchema.type = 'checkbox';
-      
+      uiSchema.required = false;
     }
 
     if (ionFormField.secret === true) {
