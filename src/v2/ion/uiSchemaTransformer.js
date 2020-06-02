@@ -135,7 +135,7 @@ const createUISchema = (remediationValue = [], factors = [], authenticators = []
       type: 'text',
     };
 
-    if (ionFormField.name === 'rememberMe') { 
+    if (ionFormField.type === 'boolean') {
       // For Remember Me checkbox, we need the label only on the right side of it.
       uiSchema.placeholder = ionFormField.label;
       uiSchema.label = false;
@@ -144,7 +144,7 @@ const createUISchema = (remediationValue = [], factors = [], authenticators = []
       uiSchema.modelType = ionFormField.type;
       // uiSchema type is the html input type desired.
       uiSchema.type = 'checkbox';
-      uiSchema.required = false;
+      uiSchema.required = ionFormField.required || false;
     }
 
     if (ionFormField.secret === true) {
@@ -182,6 +182,7 @@ const createUISchema = (remediationValue = [], factors = [], authenticators = []
  * @param {AuthResult} transformedResp
  */
 const insertUISchema = (transformedResp) => {
+
   if (transformedResp) {
     const factors = transformedResp.factors && transformedResp.factors.value || [];
     const authenticators = transformedResp.authenticators && transformedResp.authenticators.value || [];
